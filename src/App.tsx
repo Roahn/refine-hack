@@ -19,7 +19,7 @@ import { Title, Sider, Layout, Header } from "components/layout";
 import { Login } from "pages/login";
 import { CredentialResponse } from "interfaces/google";
 import { parseJwt } from "utils/parse-jwt";
-
+import { firebaseAuth } from "./firebaseConfig";
 const axiosInstance = axios.create();
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
   const token = localStorage.getItem("token");
@@ -111,7 +111,7 @@ function App() {
           Layout={Layout}
           Header={Header}
           routerProvider={routerProvider}
-          authProvider={authProvider}
+          authProvider={firebaseAuth.getAuthProvider()}
           LoginPage={Login}
         />
       </RefineSnackbarProvider>
